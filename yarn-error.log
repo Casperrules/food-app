@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add expo-app-loadin
+  /usr/local/bin/node /usr/local/bin/yarn add react-navigation-buttons
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/expo-app-loadin: Not found
+  Error: https://registry.yarnpkg.com/react-navigation-buttons: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66992:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140763:22)
       at Request.emit (events.js:400:28)
@@ -49,6 +49,7 @@ npm manifest:
       "react-native-web": "0.17.1",
       "react-navigation": "^4.4.4",
       "react-navigation-drawer": "^2.7.1",
+      "react-navigation-header-buttons": "^6.3.1",
       "react-navigation-stack": "^2.10.4",
       "react-navigation-tabs": "^2.11.1"
     },
