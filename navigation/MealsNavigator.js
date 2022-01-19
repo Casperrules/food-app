@@ -5,11 +5,13 @@ import { createAppContainer } from 'react-navigation';
 import {Platform} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealsDetailsScreen from '../screens/MealsDetailsScreen';
 import FavoritesScreen from '../screens/FavouritesScreen';
+import FiltersScreen from '../screens/FiltersScreen';
 
 import Colors from '../constant/colors';
 
@@ -46,7 +48,10 @@ const MealsNavigator = createStackNavigator(
         },
         MealDetail: MealsDetailsScreen
     },
-    defaultStackNavOptions
+    {
+        defaultNavigationOptions: defaultStackNavOptions
+    }
+    
 );
 //can change mode to modal to get modal like transition
 // also possible to setup initial screen by initialRoutName property
@@ -57,7 +62,9 @@ const FavNavigator = createStackNavigator({
         Favorites: FavoritesScreen,
         MealDetail: MealsDetailsScreen
     },
-    defaultStackNavOptions
+    {
+        defaultNavigationOptions: defaultStackNavOptions
+    }
 );
 
 const tabScreenConfig = {
@@ -91,9 +98,36 @@ const MealsFavTabNavigator = Platform.OS==='android'? createMaterialBottomTabNav
 : createBottomTabNavigator(tabScreenConfig,{
     tabBarOptions:{
         activeTintColor: Colors.accentColor,
-    }});
+}});
+
+const FilterNavigator = createStackNavigator({
+    Filters: FiltersScreen
+},{
+    defaultNavigationOptions: defaultStackNavOptions,
+    navigationOptions: {
+        drawerLabel: 'Filters'
+    }
+})
+
+const MainNavigator = createDrawerNavigator({
+    MealsFavs: { 
+        screen: MealsFavTabNavigator,
+        navigationOptions:{
+            drawerLabel:'Meals',
+
+        }
+    },
+    Filters: FilterNavigator,
+
+},
+{
+    contentOptions:{
+        activeTintColor: Colors.accentColor,
+        lableStyle:{
+            fontFamily:'open-sans-bold' //checkout official docs
+        }
+    }
+});
 
 
-
-
-export default createAppContainer(MealsFavTabNavigator);
+export default createAppContainer(MainNavigator);
